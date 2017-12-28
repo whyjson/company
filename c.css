@@ -1,0 +1,45 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#box{
+	border: 10px solid #666666;
+	margin: 100px auto;
+}
+.point{
+	/*display: flex;
+	justify-content: center;*/
+}
+.point li{
+	list-style: none;
+	width: 20px;
+	height: 20px;
+	background: #F5DEB3;
+	float: left;
+}
+
+#start {
+	width: 50px;
+	height: 30px;
+	border: 2px solid #000;
+	border-radius: 5px;
+	position: absolute;
+	left: 50px;
+	top: 100px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.clearfix { 
+  *zoom: 1; 
+} 
+.clearfix:before, 
+.clearfix:after { 
+  display: table; 
+  line-height: 0; 
+  content: ""; 
+} 
+.clearfix:after { 
+  clear: both; 
+} 

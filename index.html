@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="c.css" />
+		<script type="text/javascript" src="qipan.js"></script>
+		<script type="text/javascript" src="she.js"></script>
+		<script type="text/javascript" src="food.js"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="start">go</div>
+		<div id="pause"></div>
+	</body>
+	<script>
+		var qi = new Qipan(10,10, 'box')
+		qi.init()
+		var pan = qi.getQi()
+		var time = null
+		observer(pan)
+		var sna = new Snake(pan, [0, 3])
+		sna.init()
+		console.log(pan)
+		var food = new Food(pan)
+		food.init()
+		var btn_s = document.getElementById('start')
+		btn_s.onclick = function () {
+			if (time === null) {
+				console.log(11)
+				time = setInterval(function(){
+					sna.getGo()
+				}, 200)
+			}
+
+		}
+		document.onkeydown = function (ev) {
+			var e = event || window.event || arguments.callee.caller.arguments[0]
+			if(e && e.keyCode === 37 ){
+				sna.getLeft()
+            }
+			if(e && e.keyCode === 38 ){
+				sna.getUp()
+            }
+			if(e && e.keyCode === 39 ){
+				sna.getRight()
+            }
+			if(e && e.keyCode === 40 ){
+				sna.getDown()
+            }
+		}
+		
+		
+		
+		
+		
+		function observer(arr) {
+			arr.forEach(arr1 => {
+				arr1.forEach( item => {
+					Object.defineProperty(item,'flog',{
+						enumerable: true,
+        				configurable: true,
+        				get: ()=>{
+        					return item.newFlog
+        				},
+    				  	set:newVal=> {
+    				  		if (newVal === 'snake') {
+					            document.getElementsByClassName('point')[item.site[0]].getElementsByTagName('li')[item.site[1]].style.background = '#DB7093'
+    				  			item.newFlog = 'snake'
+    				  		} else if (newVal === 'food') {
+    				  			document.getElementsByClassName('point')[item.site[0]].getElementsByTagName('li')[item.site[1]].style.background = 'red'
+    				  			item.newFlog = 'food'
+    				  		} else {
+    				  			item.newFlog = ''
+    				  			document.getElementsByClassName('point')[item.site[0]].getElementsByTagName('li')[item.site[1]].style.background = '#F5DEB3'
+
+    				  			
+    				  		}
+				        }
+					})
+				})
+			})
+		}
+	</script>
+</html>
